@@ -42,6 +42,20 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         holder.imgDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                alphabets.remove(position);
+              /*  notifyItemRemoved(position);
+                notifyItemRangeChanged(position, alphabets.size());*/
+                //خط زیر کار دو خط بالا را انجام میدهد.
+                notifyDataSetChanged();
+            }
+        });
+
+        holder.imgAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alphabets.add(position, alphabets.get(position));
+                notifyDataSetChanged();
+
             }
         });
     }
@@ -53,7 +67,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private  ImageView img, imgDelete;
+        private  ImageView img, imgDelete, imgAdd;
         private TextView name, number;
 
         public ViewHolder(View itemView) {
@@ -63,6 +77,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             name = itemView.findViewById(R.id.name);
             number = itemView.findViewById(R.id.number);
             imgDelete = itemView.findViewById(R.id.delete);
+            imgAdd = itemView.findViewById(R.id.add);
         }
     }
 
